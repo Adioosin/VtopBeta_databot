@@ -10,10 +10,14 @@ from selenium import webdriver
 from selenium.webdriver.support import ui
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
+from docx import Document
+
+document = Document()
 
 def page_is_loaded(driver):
     return driver.find_element_by_tag_name("body") != None
-
+def check(driver):
+    return driver.find_element_by_xpath("//*[@id='semesterSubId']")
 executable_path = r"C:\Users\guest11\Documents\chromedriver\chromedriver.exe" #specify the path of chromedriver in your pc
 #os.environ["webdriver.chrome.driver"] = executable_path
 
@@ -39,8 +43,14 @@ print("hello")
 #soup_data = BeautifulSoup(vtopbeta_data,"html.parser")
 #print(soup_data)
 
-#menu = driver.find_element_by_class_name("sidebar-toggle")
-#menu.click()
-#academics = 
 driver.find_element_by_xpath("//div[@id='dbMenu']//ul//span[contains(text(),'ACADEMICS')]").click()
 driver.find_element_by_xpath("//div[@id='dbMenu']//ul//span[contains(text(),'Time Table')]").click()
+wait = ui.WebDriverWait(driver, 10)
+wait.until(check)
+driver.find_element_by_xpath("//*[@id='semesterSubId']/option[3]").click()
+driver.find_element_by_xpath("//*[@id='studentTimeTable']/div/div[2]/div/button").click()
+x = driver.page_source
+document.add_paragraph(x)
+document.save('debug.docx')
+
+
