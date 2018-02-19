@@ -39,7 +39,8 @@ print("hello")
 #soup_data = BeautifulSoup(vtopbeta_data,"html.parser")
 #print(soup_data)
 
-menu = driver.find_element_by_class_name("sidebar-toggle")
-menu.click()
+#menu = driver.find_element_by_class_name("sidebar-toggle")
+#menu.click()
 #academics = 
-driver.find_element_by_xpath("//div[@id='dbMenu']//ul//span[contains(.,'ACADEMICS')]").click()
+driver.find_element_by_xpath("//div[@id='dbMenu']//ul//span[contains(text(),'ACADEMICS')]").click()
+driver.find_element_by_xpath("//div[@id='dbMenu']//ul//span[contains(text(),'Time Table')]").click()
